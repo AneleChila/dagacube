@@ -4,7 +4,7 @@ ALTER DATABASE dagacube
   DEFAULT CHARACTER SET utf8
   DEFAULT COLLATE utf8_general_ci;
 
-GRANT ALL PRIVILEGES ON dagacube.* TO pc@localhost IDENTIFIED BY 'pc';
+GRANT ALL PRIVILEGES ON dagacube.* TO pc@localhost IDENTIFIED BY ''pc'';
 
 USE dagacube;
 
@@ -35,16 +35,16 @@ CREATE TABLE IF NOT EXISTS promotions (
   create_date DATE,
   is_active INT(4) ,
   available_wagers INT(4)
-) engine=InnoDB
+) engine=InnoDB;
 
 
-INSERT INTO `dagacube`.`players`
+INSERT INTO players
 (
-`username`,
-`password`,
-`last_modified_date`,
-`create_date`,
-`balance_amount`)
+username,
+password,
+last_modified_date,
+create_date,
+balance_amount)
 VALUES
 (
 "boom",
@@ -53,12 +53,12 @@ NOW(),
 NOW(),6);
 
 
-INSERT INTO `dagacube`.`promotions`
+INSERT INTO promotions
 (
-`last_modified_date`,
-`create_date`,
-`is_active`,
-`available_wagers`)
+last_modified_date,
+create_date,
+is_active,
+available_wagers)
 VALUES
 (
 now(),
@@ -66,12 +66,12 @@ now(),
 true,
 6);
 
-INSERT INTO `dagacube`.`transactions`
+INSERT INTO transactions
 (
-`transaction_type`,
-`player_id`,
-`last_modified_date`,
-`create_date`)
+transaction_type,
+player_id,
+last_modified_date,
+create_date)
 VALUES(
 "WINNING",
 1,
