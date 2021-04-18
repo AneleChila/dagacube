@@ -14,7 +14,7 @@ import java.util.Date;
 public class Transaction extends BaseEntity {
 
     @Column(unique = true, nullable = false)
-    private Long playerId;
+    private Long customerId;
 
     @Column(unique = true, nullable = false)
     private Long transactionId;

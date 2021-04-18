@@ -11,9 +11,11 @@ public enum ErrorCodes {
     GENERAL_DATABASE_ERR(2, "General Database Error", HttpStatus.INTERNAL_SERVER_ERROR),
     INVALID_ID_PATH_VALUE(3, "Invalid value for 'id' path parameter.", HttpStatus.BAD_REQUEST),
     FIELD_VALIDATION_ERR(4, "Invalid field: ", HttpStatus.BAD_REQUEST),
-    INVALID_REQUEST(7, "Invalid Request", HttpStatus.BAD_REQUEST),
-    DUPLICATE_FIELD(9, "Duplicate field", HttpStatus.BAD_REQUEST),
-    AUTHENTICATION_FAILED(106,"Authentication failed.",HttpStatus.FORBIDDEN);
+    INVALID_REQUEST(5, "Invalid Request", HttpStatus.BAD_REQUEST),
+    DUPLICATE_FIELD(6, "Duplicate field", HttpStatus.BAD_REQUEST),
+    AUTHENTICATION_FAILED(7,"Authentication failed.",HttpStatus.FORBIDDEN),
+    CUSTOMER_NOT_FOUND(8,"Customer does not exist",HttpStatus.BAD_REQUEST);
+
 
 
 
