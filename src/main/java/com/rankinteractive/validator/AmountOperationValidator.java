@@ -1,7 +1,7 @@
 package com.rankinteractive.validator;
 
 import com.rankinteractive.exception.InvalidRequestException;
-import com.rankinteractive.request.DeductionOrDepositRequest;
+import com.rankinteractive.request.FinancialOperationRequest;
 import org.springframework.stereotype.Component;
 import org.springframework.validation.Errors;
 import org.springframework.validation.Validator;
@@ -23,11 +23,11 @@ public class AmountOperationValidator implements Validator {
 
         ValidatorFactory factory = Validation.buildDefaultValidatorFactory();
         javax.validation.Validator validator = factory.getValidator();
-        DeductionOrDepositRequest serverRequest = (DeductionOrDepositRequest) obj;
+        FinancialOperationRequest serverRequest = (FinancialOperationRequest) obj;
 
         try {
-            Set<ConstraintViolation<DeductionOrDepositRequest>> violations = validator.validate(serverRequest);
-            for(ConstraintViolation<DeductionOrDepositRequest> violation  : violations) {
+            Set<ConstraintViolation<FinancialOperationRequest>> violations = validator.validate(serverRequest);
+            for(ConstraintViolation<FinancialOperationRequest> violation  : violations) {
                 errors.rejectValue(violation.getPropertyPath().toString(), FIELD_VALIDATION_ERR.getResponseCode(), violation.getMessage());
             }
 

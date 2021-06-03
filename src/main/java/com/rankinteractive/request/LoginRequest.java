@@ -11,11 +11,12 @@ import javax.validation.constraints.NotBlank;
 @Setter
 @NoArgsConstructor
 @AllArgsConstructor
-public class GetTransactionsRequest {
+public class LoginRequest {
 
-    @NotBlank
-    private String username;
+    //@credentials-----------
+    @NotBlank(message = "emailAddress cannot be empty")
+    private String emailAddress;
 
-    @NotBlank
+    @NotBlank(message = "password cannot be empty")
     private String password;
 }

@@ -5,9 +5,9 @@ import lombok.Getter;
 
 @Getter
 @AllArgsConstructor
-public enum TransactionTypeEnum {
+public enum SessionStatus {
 
-    BUY("buy"), SELL("sell");
+    ONLINE("online"), OFFLINE("offline");
 
-    private String type;
+    private String status;
 }

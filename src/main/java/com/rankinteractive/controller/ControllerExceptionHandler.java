@@ -2,7 +2,10 @@ package com.rankinteractive.controller;
 
 import com.rankinteractive.exception.AuthenticationException;
 import com.rankinteractive.exception.BadRequestException;
+import com.rankinteractive.exception.InternalServerErrorException;
 import com.rankinteractive.exception.InvalidRequestException;
+import com.rankinteractive.exception.errors.ErrorCodes;
+import com.rankinteractive.exception.errors.ErrorField;
 import com.rankinteractive.exception.errors.ErrorResponse;
 import com.rankinteractive.exception.errors.FieldErrorResource;
 import org.slf4j.Logger;
@@ -77,4 +80,28 @@ public class ControllerExceptionHandler extends ResponseEntityExceptionHandler {
 
     return handleExceptionInternal(bre, error, headers, HttpStatus.BAD_REQUEST, request);
   }
+
+    @ExceptionHandler(value = { Exception.class, RuntimeException.class })
+    protected ResponseEntity<Object> handleInternalServerError(InternalServerErrorException e, WebRequest request) {
+
+        ErrorResponse error = new ErrorResponse("InternalServerError", e.getMessage());
+        error.addGlobalError(e.getMessage());
+
+        HttpHeaders headers = new HttpHeaders();
+        headers.setContentType(MediaType.APPLICATION_JSON);
+
+        return handleExceptionInternal(e, error, headers, HttpStatus.INTERNAL_SERVER_ERROR, request);
+    }
+
+    @ExceptionHandler(value = { Exception.class, RuntimeException.class })
+    protected ResponseEntity<Object> defaultExceptionHandler(Exception e, WebRequest request) {
+
+        ErrorResponse error = new ErrorResponse("GeneralSystem error", e.getMessage());
+        error.addGlobalError(e.getMessage());
+
+        HttpHeaders headers = new HttpHeaders();
+        headers.setContentType(MediaType.APPLICATION_JSON);
+
+        return handleExceptionInternal(e, error, headers, HttpStatus.INTERNAL_SERVER_ERROR, request);
+    }
 }
